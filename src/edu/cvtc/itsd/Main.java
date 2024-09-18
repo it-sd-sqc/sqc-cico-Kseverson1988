@@ -36,16 +36,36 @@ public class Main {
   // InputFilter manages user input to the card number field.
   private static class InputFilter extends DocumentFilter {
     private static final int MAX_LENGTH = 8;
+    private static final int ERROR_INVALID_INPUT = 5;
+
+    private boolean isNumeric(String str) {
+      if (str == null || str.isEmpty()) {
+        return false;
+      }
+      for (char c : str.toCharArray()) {
+        if (!Character.isDigit(c)) {
+          return false;
+        }
+      }
+      return true;
+    }
 
     @Override
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+      // Get the current content of the document
+      String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
+
+      // Build the new content by inserting the new string
+      String newText = currentText.substring(0, offset) + stringToAdd + currentText.substring(offset);
+
+      if (isNumeric(newText)) {
         super.insertString(fb, offset, stringToAdd, attr);
       }
       else {
         Toolkit.getDefaultToolkit().beep();
+        showError(ERROR_INVALID_INPUT);
       }
     }
 
@@ -53,11 +73,18 @@ public class Main {
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+      // Get the current content of the document
+      String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
+
+      // Build the new content by inserting the new string
+      String newText = currentText.substring(0, offset) + stringToAdd + currentText.substring(offset);
+
+      if (isNumeric(newText)) {
         super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
       }
       else {
         Toolkit.getDefaultToolkit().beep();
+        showError(ERROR_INVALID_INPUT);
       }
     }
   }
@@ -179,7 +206,8 @@ public class Main {
         "Please inform staff that database wasn't found.",
         "Please show your card to staff to validate.",
         "Please inform staff that status updates failed.",
-        "Please inform staff that log updates failed."
+        "Please inform staff that log updates failed.",
+        "Invalid Input: Please Enter Numbers Only"
     };
 
     labelReason.setText(explanations[code]);
