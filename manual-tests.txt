@@ -1,5 +1,18 @@
 Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command line. You can otherwise use your IDE to build and run CiCo.
 
+# Module 4; Test for Number Validation
+
+## Test steps
+1.Build and run Cico.
+2.Enter abcd in the field and click Update
+3. Wait 11 seconds.
+
+## Expected results:
+* The error panel should appear after step 2.
+* The main panel should appear after step 3.
+
+
+
 # Module 2: Sample test for the happy path. 
 
 ## Test steps
