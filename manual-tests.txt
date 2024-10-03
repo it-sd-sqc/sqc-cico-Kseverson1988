@@ -1,4 +1,13 @@
 Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command line. You can otherwise use your IDE to build and run CiCo.
+##Module 5 Test Checkout 'done' button
+1.Build and run CiCo
+2. Enter 00000000 into the field and click Update.
+3. Click done button
+
+## Expected Results:
+after step 2 button should show 'done'
+clicking done button should go to main panel
+
 
 # Module 2: Sample test for the happy path. 
 
