@@ -70,4 +70,13 @@ clicking done button should go to main panel
 ## Expected results
 * Should display "Developer" for the user name.
 
+## Module 6: Delete Update button
 
+## Test steps
+1. Build and run CiCo.
+2. Enter 00000000 into the field.
+3. Enter 99999999 into the field.
+
+## Expected results
+* Should display status panel after step 2.
+* Should display error panel after step 3.
